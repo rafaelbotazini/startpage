@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Front page</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'FiraCode Nerd Font Mono', 'Fira Code', 'Ubuntu Mono', 'Courier New', Courier, monospace;
+            color: #D8DEE9;
+            background-color: #333333;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 900px;
+            padding: 0 20px;
+            margin: 0 auto;
+        }
+
+        .links>div {
+
+            padding: 0 10px;
+        }
+
+        .links a {
+            display: block;
+            text-decoration: none;
+            margin-bottom: 1rem;
+        }
+
+        .links a {
+            color: #D8DEE9;
+        }
+
+        .links a:hover {
+            color: #81A1C1;
+        }
+
+        .datetime {
+            text-align: center;
+        }
+
+        #date {
+            color: #999999;
+        }
+
+        .flex-center {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .mt-lg {
+            margin-top: 240px;
+        }
+
+        .mb-4 {
+            margin-bottom: 1.4rem;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="mt-lg datetime">
+            <p id="date">01/01/2020</p>
+            <h1 id="time">00:00:00</h1>
+        </div>
+        <div class="flex-center links">
+            <div>
+                <a href="https://github.com/rafaelbotazini">1. Github</a>
+                <a href="https://trello.com/rafaelbotazini/boards">2. Trello</a>
+                <a href="https://www.youtube.com/">3. Youtube</a>
+                <a href="https://mail.google.com">4. Gmail</a>
+            </div>
+            <div>
+                <a href="https://web.whatsapp.com">5. Whatsapp Web</a>
+                <a href="https://pucminas.instructure.com/">6. Canvas</a>
+                <a href="https://www.sistemas.pucminas.br/sgaaluno4/SilverStream/Pages/pgAln_LoginSSL.html">7. SGA</a>
+                <a href="https://teams.microsoft.com/_#/school//?ctx=teamsGrid">8. Teams</a>
+            </div>
+        </div>
+    </div>
+</body>
+
+<script>
+    var date = document.getElementById("date")
+    var time = document.getElementById("time")
+
+    var setTime = function () {
+        date.innerHTML = new Date().toLocaleDateString("pt-br")
+        time.innerHTML = new Date().toLocaleTimeString("pt-br")
+    };
+
+    setTime()
+
+    setInterval(setTime, 1000)
+</script>
+
+</html>
