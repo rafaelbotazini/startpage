@@ -9,7 +9,7 @@
         body {
             margin: 0;
             padding: 0;
-            font-family: 'FiraCode Nerd Font Mono', 'Fira Code', 'Ubuntu Mono', 'Courier New', Courier, monospace;
+            font-family: 'FiraCode Nerd Font Mono', 'FiraCode NF', 'Fira Code', 'Ubuntu Mono', 'Courier New', Courier, monospace;
             color: #D8DEE9;
             background-color: #333333;
         }
@@ -26,7 +26,6 @@
         }
 
         .links>div {
-
             padding: 0 10px;
         }
 
@@ -38,6 +37,10 @@
 
         .links a {
             color: #D8DEE9;
+        }
+
+        .dark .links a {
+            color: #555555;
         }
 
         .links a:hover {
@@ -82,7 +85,7 @@
                 <a href="https://mail.google.com">4. Gmail</a>
             </div>
             <div>
-                <a href="https://web.whatsapp.com">5. Whatsapp Web</a>
+                <a href="https://web.whatsapp.com">5. Whatsapp</a>
                 <a href="https://pucminas.instructure.com/">6. Canvas</a>
                 <a href="https://www.sistemas.pucminas.br/sgaaluno4/SilverStream/Pages/pgAln_LoginSSL.html">7. SGA</a>
                 <a href="https://teams.microsoft.com/_#/school//?ctx=teamsGrid">8. Teams</a>
@@ -92,6 +95,15 @@
 </body>
 
 <script>
+    if (!window.matchMedia("(prefers-color-scheme: dark)").matches) {
+        var body = document.getElementsByTagName('body')[0]
+        body.style.backgroundColor = "#fcfcfc"
+        body.style.color = "#555555"
+
+        var container = document.getElementsByClassName('container')[0]
+        container.classList.add('dark')
+    }
+
     var date = document.getElementById("date")
     var time = document.getElementById("time")
 
