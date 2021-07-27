@@ -6,12 +6,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Front page</title>
     <style>
+        :root {
+            --foreground: #D8DEE9;
+            --background: #23252e;
+            --card-foreground: #D8DEE9;
+            --card-background: #272a34;
+
+            --dark-foreground: #555555;
+            --dark-background: #fcfcfc;
+            --dark-card-foreground: #555555;
+            --dark-card-background: #e1e1e1;
+        }
+
         body {
             margin: 0;
             padding: 0;
-            font-family: 'FiraCode Nerd Font Mono', 'FiraCode NF', 'Fira Code', 'Ubuntu Mono', 'Courier New', Courier, monospace;
-            color: #D8DEE9;
-            background-color: #23252e;
+            font-family: 'FiraCode Nerd Font Mono', 'FiraCode NF', 'Fira Code', 'Ubuntu Mono', 'Courier New', Courier, 'Roboto Mono', monospace;
+            color: var(--foreground);
+            background-color: var(--background);
+        }
+
+        body.dark {
+            color: var(--dark-foreground);
+            background-color: var(--dark-background);
         }
 
         h1 {
@@ -29,7 +46,7 @@
         }
 
         .links a {
-            background-color: #272a34;
+            background-color: var(--card-background);
             padding: 14px 16px;
             text-align: center;
             border-radius: 4px;
@@ -39,12 +56,12 @@
         }
 
         .links a {
-            color: #D8DEE9;
+            color: var(--card-foreground);
         }
 
         .dark .links a {
-            color: #555555;
-            background-color: #e1e1e1;
+            color: var(--dark-card-foreground);
+            background-color: var(--dark-card-background);
         }
 
         .links a:hover {
@@ -59,6 +76,44 @@
             color: #999999;
         }
 
+        .search-input {
+            height: 40px;
+            width: 320px;
+            background-color: var(--card-background);
+            color: var(--foreground);
+            border: none;
+            border-radius: 4px;
+            padding: 0 10px;
+            margin: 0 auto;
+        }
+
+        .dark .search-input {
+            background-color: var(--dark-card-background);
+            color: var(--dark-foreground);
+        }
+
+        .theme-switch-container {
+            margin-top: auto;
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        .theme-switch-container>button {
+            background-color: transparent;
+            color: var(--foreground);
+            padding: 12px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .dark .theme-switch-container>button {
+            color: var(--dark-foreground);
+        }
+
+        .theme-switch-container>button:active {
+            border: none;
+        }
+
         .flex-center {
             display: flex;
             align-items: center;
@@ -66,7 +121,7 @@
         }
 
         .mt-lg {
-            margin-top: 180px;
+            margin-top: 12%;
         }
 
         .mb-4 {
@@ -76,10 +131,18 @@
 </head>
 
 <body>
+    <div class="theme-switch-container">
+        <button id="theme-switcher" type="button">&star;</button>
+    </div>
     <div class="container">
         <div class="mt-lg datetime">
             <p id="date">01/01/2020</p>
             <h1 id="time">00:00:00</h1>
+        </div>
+        <div class="flex-center mb-4">
+            <form id="search-form" action="https://duckduckgo.com/">
+                <input name="q" class="search-input" type="text" placeholder="Search DuckDuckGo..." autofocus>
+            </form>
         </div>
         <div class="flex-center links">
             <div>
@@ -99,15 +162,14 @@
 </body>
 
 <script>
-    if (!window.matchMedia("(prefers-color-scheme: dark)").matches) {
-        var body = document.getElementsByTagName('body')[0]
-        body.style.backgroundColor = "#fcfcfc"
-        body.style.color = "#555555"
+    // set dark theme
+    var body = document.getElementsByTagName('body')[0]
 
-        var container = document.getElementsByClassName('container')[0]
-        container.classList.add('dark')
+    if (!window.matchMedia("(prefers-color-scheme: dark)").matches) {
+        body.classList.add('dark')
     }
 
+    // update date and time
     var date = document.getElementById("date")
     var time = document.getElementById("time")
 
@@ -116,9 +178,19 @@
         time.innerHTML = new Date().toLocaleTimeString("pt-br")
     };
 
+    setInterval(setTime, 1000)
     setTime()
 
-    setInterval(setTime, 1000)
+    // toggle dark theme on button press
+    var themeSwitcher = document.getElementById('theme-switcher')
+
+    themeSwitcher.onclick = function () {
+        if (body.classList.contains('dark')) {
+            body.classList.remove('dark')
+        } else {
+            body.classList.add('dark')
+        }
+    }
 </script>
 
 </html>
