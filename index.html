@@ -7,15 +7,17 @@
     <title>Front page</title>
     <style>
         :root {
-            --foreground: #D8DEE9;
-            --background: #23252e;
-            --card-foreground: #D8DEE9;
-            --card-background: #272a34;
+            --foreground: #555555;
+            --background: #fcfcfc;
+            --card-foreground: #555555;
+            --card-background: #e1e1e1;
 
-            --dark-foreground: #555555;
-            --dark-background: #fcfcfc;
-            --dark-card-foreground: #555555;
-            --dark-card-background: #e1e1e1;
+            --dark-foreground: #fafafa;
+            --dark-background: #1d1d1d;
+            --dark-card-foreground: #D8DEE9;
+            --dark-card-background: #262626;
+
+            --foreground-hover: #81A1C1;
         }
 
         body {
@@ -65,7 +67,7 @@
         }
 
         .links a:hover {
-            color: #81A1C1;
+            color: var(--foreground-hover);
         }
 
         .datetime {
@@ -139,11 +141,11 @@
             <p id="date">01/01/2020</p>
             <h1 id="time">00:00:00</h1>
         </div>
-        <div class="flex-center mb-4">
+        <!-- <div class="flex-center mb-4">
             <form id="search-form" action="https://duckduckgo.com/">
                 <input name="q" class="search-input" type="text" placeholder="Search DuckDuckGo...">
             </form>
-        </div>
+        </div> -->
         <div class="flex-center links">
             <div>
                 <a href="https://github.com">GitHub</a>
@@ -155,7 +157,7 @@
                 <a href="https://web.whatsapp.com">WhatsApp</a>
                 <a href="https://pucminas.instructure.com/">Canvas</a>
                 <a href="https://www.sistemas.pucminas.br/sgaaluno4/SilverStream/Pages/pgAln_LoginSSL.html">SGA</a>
-                <a href="https://teams.microsoft.com/_#/school//?ctx=teamsGrid">Teams</a>
+                <a href="https://teams.microsoft.com/_#/school/?ctx=teamsGrid">Teams</a>
             </div>
         </div>
     </div>
@@ -165,7 +167,7 @@
     // set dark theme
     var body = document.getElementsByTagName('body')[0]
 
-    if (!window.matchMedia("(prefers-color-scheme: dark)").matches) {
+    if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
         body.classList.add('dark')
     }
 
